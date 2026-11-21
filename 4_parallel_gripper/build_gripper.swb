@@ -219,10 +219,11 @@ Function BuildCrank() As Object
     ' Gear blank 24.2 mm, teeth out to 29.3 mm, 24 teeth. Arm is 31 mm to an 8 mm boss with a 3 mm hole.
     ExtrudeCircle part, 0, 0, 0.0121, depth
     AddTeeth part, 24, 0.0121, 0.01465, depth
-    ExtrudeRect part, -0.031, -0.003, 0, 0.003, depth
-    ExtrudeCircle part, -0.031, 0, 0.004, depth
+    ' Arm along +X toward the jaws (Assembly_8).
+    ExtrudeRect part, 0, -0.003, 0.031, 0.003, depth
+    ExtrudeCircle part, 0.031, 0, 0.004, depth
     CutCircle part, 0, 0, 0.0015
-    CutCircle part, -0.031, 0, 0.0015
+    CutCircle part, 0.031, 0, 0.0015
     Set BuildCrank = part
 End Function
 
@@ -231,9 +232,13 @@ Function BuildTooth() As Object
     Dim depth As Double
     depth = 0.003
     Set part = NewPartDoc()
+    ' Same blank as the crank; Assembly_8 gives both gears a primary arm.
     ExtrudeCircle part, 0, 0, 0.0121, depth
     AddTeeth part, 24, 0.0121, 0.01465, depth
+    ExtrudeRect part, 0, -0.003, 0.031, 0.003, depth
+    ExtrudeCircle part, 0.031, 0, 0.004, depth
     CutCircle part, 0, 0, 0.0015
+    CutCircle part, 0.031, 0, 0.0015
     Set BuildTooth = part
 End Function
 
@@ -298,19 +303,19 @@ Function BuildAssembly(holderPath As String, fingerPath As String, linkPath As S
     End If
     If assy Is Nothing Then Exit Function
 
-    ' Layout matches the course render: holder, two meshing gears, links, two jaws to the right, servo underneath.
+    ' Layout like Assembly_8: both gear arms toward the jaws, two secondary links, two fingers.
     AddAt assy, holderPath, 0, 0, 0, 0, 1
     AddAt assy, servoPath, 0.004, -0.002, -0.02, 0, 1
-    AddAt assy, toothPath, 0.01, 0.01, 0.004, 0, 1
-    AddAt assy, crankPath, 0.026, 0.01, 0.004, 0, 1
-    AddAt assy, linkPath, 0.026, 0.01, 0.008, 0, 1
-    AddAt assy, linkPath, 0.01, -0.004, 0.008, 1.2, 1
-    AddAt assy, fingerPath, 0.055, -0.012, 0.004, -0.45, 1
-    AddAt assy, fingerPath, 0.055, 0.028, 0.008, 0.45, -1
+    AddAt assy, toothPath, 0.01, 0.01, 0.004, 0.4, 1
+    AddAt assy, crankPath, 0.026, 0.01, 0.004, -0.4, 1
+    AddAt assy, linkPath, 0.01, -0.004, 0.007, 0.3, 1
+    AddAt assy, linkPath, 0.039, 0.022, 0.008, 0.4, 1
+    AddAt assy, fingerPath, 0.055, -0.002, 0.004, -0.45, 1
+    AddAt assy, fingerPath, 0.039, 0.022, 0.008, 0.45, -1
     AddAt assy, pinPath, 0.01, 0.01, 0.002, 0, 1
     AddAt assy, pinPath, 0.026, 0.01, 0.002, 0, 1
-    AddAt assy, pinPath, 0.055, -0.012, 0.002, 0, 1
-    AddAt assy, pinPath, 0.055, 0.028, 0.002, 0, 1
+    AddAt assy, pinPath, 0.055, -0.002, 0.002, 0, 1
+    AddAt assy, pinPath, 0.039, 0.022, 0.002, 0, 1
     assy.EditRebuild3
     Set BuildAssembly = assy
 End Function

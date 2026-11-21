@@ -1,6 +1,6 @@
 # Parallel gripper
 
-Seven parts, millimetres: Holder, Servo, ToothGear, CrankGear, Link, Finger, Pin.
+Seven parts, millimetres: Holder, Servo, ToothGear, CrankGear, Link, Finger, Pin. Both gears carry a primary arm toward the jaws; two Links are the secondary bars; the Finger tip follows the hooked profile from the course sketch.
 
 `out/GripperOpen.step` and `out/GripperOpen.stl` are the open pose. `out/GripperClosed.step` and `out/GripperClosed.stl` are the closed pose. Each part is also a separate STEP file in `out/`.
 
