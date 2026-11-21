@@ -1,0 +1,6 @@
+goal joints rad: [ 0.4 -1.   1.1 -1.3  1.2  0.5]
+start joints rad: [ 0.  -1.2  0.6 -0.8  0.8  0. ]
+ik joints rad: [ 0.40003  -1.000019  1.099949 -1.299912  1.200012  0.499965]
+target position m: [-0.354225 -0.328185  0.385174]
+position error m: 2.105e-05
+orientation error rad: 7.287e-06

@@ -1,0 +1,14 @@
+UR3 CB3 visual meshes and Robotiq 2F-85 visual meshes.
+
+Packed file meshes.bin and the link tree robot.json are from
+https://github.com/miguelaltamirano/ur3-ik-playground
+commit assets published for https://miguelaltamirano.github.io/ur3-ik-playground/
+
+The arm geometry is Universal Robots ROS 2 description 2.9.0, UR3 CB3, not UR3e.
+The gripper geometry is the official Robotiq 2F-85, fixed fully open, with the 11 mm adapter.
+Licenses: UR_LICENSE.txt and ROBOTIQ_LICENSE.txt.
+
+scene.xml and meshes/*.obj are that same geometry unpacked for MuJoCo.
+The six hinge joints follow the published joint tree:
+shoulder_pan_joint, shoulder_lift_joint, elbow_joint,
+wrist_1_joint, wrist_2_joint, wrist_3_joint.

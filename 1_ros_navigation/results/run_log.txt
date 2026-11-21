@@ -1,0 +1,20 @@
+Sending setpoint command [-3  3]
+Planning successful
+Start Pose [0. 0.]
+Goal Pose [-3.  3.]
+Path length 13 points
+Goal reached!
+
+Sending setpoint command [  7 -10]
+Planning successful
+Start Pose [-2.8318615   2.87007642]
+Goal Pose [  7. -10.]
+Path length 61 points
+Goal reached!
+
+Sending setpoint command [ 6 -6]
+Planning successful
+Start Pose [ 6.83009911 -9.86517429]
+Goal Pose [ 6. -6.]
+Path length 122 points
+Goal reached!
