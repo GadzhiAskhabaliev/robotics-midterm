@@ -6,6 +6,8 @@ Seven parts, millimetres: Holder, Servo, ToothGear, CrankGear, Link, Finger, Pin
 
 `build_gripper.py` writes those files with CadQuery. A STEP file that is already present is left as it is.
 
+`solidworks/` holds the SolidWorks assembly and parts: `Assem1.SLDASM`, `Holder.SLDPRT`, `Servo.SLDPRT`, `ToothGear.SLDPRT`, `CrankGear.SLDPRT`, `Link.SLDPRT`, `Finger.SLDPRT`, `Pin.SLDPRT`. Open `Assem1.SLDASM` from that folder.
+
 `build_gripper.swb` builds the same parts in SolidWorks, saves them as SLDPRT, opens the assembly, and moves the jaws from the open pose to the closed pose. The macro stores the parts in `C:\Temp\Gripper`, or `C:\Users\Public\Gripper`, or `D:\Gripper`.
 
 ## Run
