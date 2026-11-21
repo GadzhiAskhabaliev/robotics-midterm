@@ -4,7 +4,7 @@ Seven parts, millimetres: Holder, Servo, ToothGear, CrankGear, Link, Finger, Pin
 
 `out/GripperOpen.step` and `out/GripperOpen.stl` are the open pose. `out/GripperClosed.step` and `out/GripperClosed.stl` are the closed pose. Each part is also a separate STEP file in `out/`.
 
-`frames/GripperOpen.png` and `frames/GripperClosed.png` show the assembly in those poses. `frames/GripperOpen_side.png` and `frames/GripperClosed_side.png` are the side views.
+`frames/GripperOpen.png` and `frames/GripperClosed.png` show the assembly in those poses. `frames/GripperOpen_side.png` and `frames/GripperClosed_side.png` are the side views. `frames/gripper.gif` is the jaw motion from open to closed and back.
 
 `build_gripper.py` writes those files with CadQuery. A STEP file that is already present is left as it is.
 
