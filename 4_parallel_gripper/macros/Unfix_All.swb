@@ -1,0 +1,94 @@
+' Unfix assembly components. Open Assem first, then Run.
+' Avoids GetFixed / Select4 (ERR 438 on some AppStream SW builds).
+
+Option Explicit
+
+Sub main()
+    Dim swApp As Object
+    Dim model As Object
+    Dim assy As Object
+    Dim comps As Variant
+    Dim i As Long
+    Dim comp As Object
+    Dim nm As String
+    Dim changed As Long
+    Dim ok As Boolean
+
+    On Error GoTo Boom
+
+    Set swApp = Application.SldWorks
+    Set model = swApp.ActiveDoc
+
+    If model Is Nothing Then
+        MsgBox "Open assembly first."
+        Exit Sub
+    End If
+    If model.GetType <> 2 Then
+        MsgBox "Not an assembly."
+        Exit Sub
+    End If
+
+    Set assy = model
+    comps = assy.GetComponents(False)
+
+    If IsEmpty(comps) Then
+        MsgBox "No components."
+        Exit Sub
+    End If
+
+    changed = 0
+
+    For i = 0 To UBound(comps)
+        Set comp = comps(i)
+        If Not comp Is Nothing Then
+            nm = ""
+            On Error Resume Next
+            nm = comp.Name2
+            On Error GoTo Boom
+
+            If Len(nm) > 0 Then
+                model.ClearSelection2 True
+                ok = False
+                On Error Resume Next
+                ok = model.Extension.SelectByID2(nm, "COMPONENT", 0, 0, 0, False, 0, Nothing, 0)
+                On Error GoTo Boom
+
+                If ok Then
+                    On Error Resume Next
+                    assy.UnfixComponent
+                    If Err.Number = 0 Then changed = changed + 1
+                    Err.Clear
+                    On Error GoTo Boom
+                End If
+            End If
+        End If
+    Next i
+
+    model.ClearSelection2 True
+
+    ' Re-fix first component (usually base) so assembly does not fall apart
+    Set comp = comps(0)
+    If Not comp Is Nothing Then
+        nm = ""
+        On Error Resume Next
+        nm = comp.Name2
+        If Len(nm) > 0 Then
+            model.ClearSelection2 True
+            If model.Extension.SelectByID2(nm, "COMPONENT", 0, 0, 0, False, 0, Nothing, 0) Then
+                assy.FixComponent
+            End If
+        End If
+        On Error GoTo Boom
+    End If
+
+    model.ClearSelection2 True
+    model.EditRebuild3
+
+    MsgBox "Unfixed count (attempts OK): " & CStr(changed) & vbCrLf & _
+           "Component(0) fixed again as base." & vbCrLf & _
+           "Try dragging a gear. If still locked - check Mates."
+    Exit Sub
+
+Boom:
+    MsgBox "ERR " & Err.Number & ": " & Err.Description
+End Sub
