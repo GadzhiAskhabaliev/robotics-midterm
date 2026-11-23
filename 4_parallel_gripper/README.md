@@ -4,7 +4,9 @@ Native SOLIDWORKS parallel gripper (gear-driven parallelogram jaws).
 
 ## Motion
 
-Open ↔ close animation: [`GripperGif.mp4`](GripperGif.mp4)
+![Open–close animation](GripperGif.gif)
+
+Also: [`GripperGif.mp4`](GripperGif.mp4) (original recording).
 
 ## SolidWorks
 
@@ -19,4 +21,5 @@ Per-part STEP geometry is also here (`01_…`–`12_…`, matching the assembly)
 | `Assem1.SLDASM` | Assembly with mates |
 | `PG_*.SLDPRT` | Native parts |
 | `*.step` | Source geometry for the parts |
-| `GripperGif.mp4` | Jaw open–close animation |
+| `GripperGif.gif` | Jaw open–close animation (shows on GitHub) |
+| `GripperGif.mp4` | Same clip, original video |
